@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainTabBar: View {
+struct MainTabBarView: View {
     var body: some View {
         TabView {
             
@@ -20,7 +20,7 @@ struct MainTabBar: View {
                         Text("Menu")
                     }
                 }
-            CartView()
+            CartView(viewModel: CardViewModel.shared)
                 .tabItem {
                     VStack {
                         Image(systemName: "cart")
@@ -40,6 +40,6 @@ struct MainTabBar: View {
 
 struct MainTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabBar()
+        MainTabBarView()
     }
 }

@@ -78,7 +78,7 @@ struct AuthView: View {
                             .blur(radius: 4)
                             .ignoresSafeArea())
             .fullScreenCover(isPresented: $isTabViewShow) {
-                MainTabBar()
+                MainTabBarView()
             }
         
     }
