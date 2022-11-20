@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CartView: View {
     
-    var viewModel: CardViewModel
+    @StateObject var viewModel: CardViewModel
     
     var body: some View {
         VStack {
