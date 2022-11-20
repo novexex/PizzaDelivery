@@ -26,7 +26,7 @@ struct ProfileView: View {
                 
             }.padding()
             Text("Your orders:")
-                .padding()
+                .padding(5)
             List {
                 Text("orderTest1")
                 Text("orderTest2")
@@ -41,7 +41,9 @@ struct ProfileView: View {
                     .font(.system(size: 16, weight: .light, design: .rounded))
                     .foregroundColor(.black)
                     .padding()
-            }.alert("Are you sure you want to logout?", isPresented: $isQuitAlertPresented) {
+            }
+            .padding(.horizontal, 15)
+            .alert("Are you sure you want to logout?", isPresented: $isQuitAlertPresented) {
                 Button("Yes") {}
                 Button("No", role: .cancel) {}
             }
