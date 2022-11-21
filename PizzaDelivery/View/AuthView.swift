@@ -12,9 +12,10 @@ struct AuthView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
-    @State private var isAuth = true
-    
+    @State private var isSignIn = true
+    @State private var isShowAlert = false
     @State private var isTabViewShow = false
+    @State private var alertMessage = ""
     
     var body: some View {
         VStack(spacing: 30) {
@@ -27,17 +28,39 @@ struct AuthView: View {
                     .padding()
                     .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20))
                 
-                if !isAuth {
+                if !isSignIn {
                     SecureField("confirm password", text: $confirmPassword)
                         .padding()
                         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 20))
                 }
                 
+                
+                // MARK: Sign In button
                 Button {
-                    print(isAuth ? "Sign In pressed" : "Sign Up pressed")
-                    isTabViewShow.toggle()
+                    print(isSignIn ? "Sign In pressed" : "Sign Up pressed from Sign In button")
+                    // MARK: mutating to Sing Up button
+                    if !isSignIn {
+                        guard password == confirmPassword else {
+                            alertMessage = "The passwords do not match"
+                            self.isShowAlert.toggle()
+                            return
+                        }
+                        
+                        AuthService.shared.signUp(email: self.email,
+                                                  password: self.password) { result in
+                            switch result {
+                            case .success(_):
+                                    alertMessage = "Registration is successful!"
+                                    print("alert reg is success")
+                                    isShowAlert.toggle()
+                                case .failure(let error):
+                                    alertMessage = "Registration error: \(error.localizedDescription)"
+                                    isShowAlert.toggle()
+                            }
+                        }
+                    }
                 } label: {
-                    Text(isAuth ? "Sign In" : "Sign Up")
+                    Text(isSignIn ? "Sign In" : "Sign Up")
                         .font(.system(size: 15, weight: .bold))
                         .frame(maxWidth: .maximum(125, 125))
                         .padding()
@@ -46,12 +69,22 @@ struct AuthView: View {
                         .cornerRadius(16)
                         .shadow(color: .black, radius: 1, x: 0, y: 1)
                 }.padding(.top, 15)
+                    .alert(alertMessage, isPresented: $isShowAlert) {
+                        Button("OK", role: .cancel) {
+                            isShowAlert.toggle()
+                            isTabViewShow.toggle()
+                        }
+                    }
+                    .fullScreenCover(isPresented: $isTabViewShow) {
+                        MainTabBarView()
+                    }
                 
+                // MARK: Sign Up button
                 Button {
-                    print(isAuth ? "Sign Up pressed" : "Sign In pressed")
-                    isAuth.toggle()
+                    print(isSignIn ? "Sign Up pressed" : "Sign In pressed from Sign In button")
+                    isSignIn.toggle()
                 } label: {
-                    Text(isAuth ? "Sign Up" : "Sign In")
+                    Text(isSignIn ? "Sign Up" : "Return to Sign In")
                         .font(.system(size: 14))
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.white)
@@ -62,14 +95,14 @@ struct AuthView: View {
     
             }.background(Image("pepperoniBg")
                             .resizable()
-                            .frame(width: isAuth ? 375 : 380, height: isAuth ? 375 : 380)
+                            .frame(width: isSignIn ? 375 : 380, height: isSignIn ? 375 : 380)
                             .opacity(0.85)
-                            .offset(y: isAuth ? -15 : 17)
-                            .rotationEffect(isAuth ? .degrees(0) : .degrees(180))
+                            .offset(y: isSignIn ? -15 : 17)
+                            .rotationEffect(isSignIn ? .degrees(0) : .degrees(180))
             )
             .padding(.horizontal, 50)
             .padding()
-            .animation(Animation.easeOut(duration: 0.3), value: isAuth)
+            .animation(Animation.easeOut(duration: 0.3), value: isSignIn)
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Image("background")
                             .resizable()
@@ -77,10 +110,6 @@ struct AuthView: View {
                             .position(x: 450, y: 500)
                             .blur(radius: 4)
                             .ignoresSafeArea())
-            .fullScreenCover(isPresented: $isTabViewShow) {
-                MainTabBarView()
-            }
-        
     }
 }
 

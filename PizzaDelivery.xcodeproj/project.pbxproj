@@ -24,6 +24,11 @@
 		1EDCA2882928DD7900C840BD /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDCA2872928DD7900C840BD /* CardViewModel.swift */; };
 		1EDCA28A2928DFE000C840BD /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDCA2892928DFE000C840BD /* Position.swift */; };
 		1EDCA28C2928E80200C840BD /* PositionCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDCA28B2928E80200C840BD /* PositionCellView.swift */; };
+		EB1049DB292B96BC001C233A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EB1049DA292B96BC001C233A /* FirebaseAuth */; };
+		EB1049DD292B96BC001C233A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EB1049DC292B96BC001C233A /* FirebaseFirestore */; };
+		EB1049DF292B96BC001C233A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EB1049DE292B96BC001C233A /* FirebaseStorage */; };
+		EB2DFF87292B9DE700EF4B54 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2DFF86292B9DE700EF4B54 /* AuthService.swift */; };
+		EBC9CAF8292BB5750073DDFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBC9CAF7292BB5750073DDFF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +50,8 @@
 		1EDCA2872928DD7900C840BD /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		1EDCA2892928DFE000C840BD /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		1EDCA28B2928E80200C840BD /* PositionCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionCellView.swift; sourceTree = "<group>"; };
+		EB2DFF86292B9DE700EF4B54 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		EBC9CAF7292BB5750073DDFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1049DB292B96BC001C233A /* FirebaseAuth in Frameworks */,
+				EB1049DD292B96BC001C233A /* FirebaseFirestore in Frameworks */,
+				EB1049DF292B96BC001C233A /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,11 +130,13 @@
 			isa = PBXGroup;
 			children = (
 				1E72B8452924AD07005F468D /* PizzaDeliveryApp.swift */,
+				EB2DFF88292B9DEC00EF4B54 /* Services */,
 				1E5FEB4129272EFD0019FC13 /* Model */,
 				1E5FEB4429272F380019FC13 /* ViewModel */,
 				1E5FEB40292726EE0019FC13 /* ComponentsView */,
 				1E5FEB372927222C0019FC13 /* View */,
 				1E72B8492924AD08005F468D /* Assets.xcassets */,
+				EBC9CAF7292BB5750073DDFF /* GoogleService-Info.plist */,
 				1E72B84B2924AD08005F468D /* Preview Content */,
 			);
 			path = PizzaDelivery;
@@ -136,6 +148,14 @@
 				1E72B84C2924AD08005F468D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EB2DFF88292B9DEC00EF4B54 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EB2DFF86292B9DE700EF4B54 /* AuthService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +174,11 @@
 			dependencies = (
 			);
 			name = PizzaDelivery;
+			packageProductDependencies = (
+				EB1049DA292B96BC001C233A /* FirebaseAuth */,
+				EB1049DC292B96BC001C233A /* FirebaseFirestore */,
+				EB1049DE292B96BC001C233A /* FirebaseStorage */,
+			);
 			productName = PizzaDelivery;
 			productReference = 1E72B8422924AD07005F468D /* PizzaDelivery.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +207,9 @@
 				Base,
 			);
 			mainGroup = 1E72B8392924AD07005F468D;
+			packageReferences = (
+				EB1049D9292B96BC001C233A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 1E72B8432924AD07005F468D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -198,6 +226,7 @@
 			files = (
 				1E72B84D2924AD08005F468D /* Preview Assets.xcassets in Resources */,
 				1E72B84A2924AD08005F468D /* Assets.xcassets in Resources */,
+				EBC9CAF8292BB5750073DDFF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +252,7 @@
 				1E5FEB35292722160019FC13 /* ProfileView.swift in Sources */,
 				1E5FEB3D292726830019FC13 /* Product.swift in Sources */,
 				1E5FEB4629272F660019FC13 /* CatalogViewModel.swift in Sources */,
+				EB2DFF87292B9DE700EF4B54 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,17 +380,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PizzaDelivery/Preview Content\"";
+				DEVELOPMENT_TEAM = N64BNPUBV4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -368,6 +399,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = novexex.PizzaDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -379,17 +411,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PizzaDelivery/Preview Content\"";
+				DEVELOPMENT_TEAM = N64BNPUBV4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -397,6 +430,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = novexex.PizzaDelivery;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -425,6 +459,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EB1049D9292B96BC001C233A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB1049DA292B96BC001C233A /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB1049D9292B96BC001C233A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		EB1049DC292B96BC001C233A /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB1049D9292B96BC001C233A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		EB1049DE292B96BC001C233A /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB1049D9292B96BC001C233A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1E72B83A2924AD07005F468D /* Project object */;
 }
