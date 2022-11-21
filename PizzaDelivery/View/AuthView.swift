@@ -73,6 +73,7 @@ struct AuthView: View {
                         Button("OK", role: .cancel) {
                             isShowAlert.toggle()
                             isTabViewShow.toggle()
+                            isSignIn.toggle()
                         }
                     }
                     .fullScreenCover(isPresented: $isTabViewShow) {
